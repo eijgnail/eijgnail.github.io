@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <title>温博集团</title>
+    <style>
+    	* {
+    		padding: 0px;
+    		margin: 0px;
+    		box-sizing: border-box;
+    		font-family: PingFangSC-Regular;
+    	}
+    	input:focus,
+			select:focus,
+			textarea:focus,
+			button:focus {
+			    outline: none;
+			}
+    </style>
+  </head>
+  <body>
+    <div id="app">
+    	<router-view></router-view>
+    </div>
+    <script>
+      var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+      function preventDefault(e) {
+        if (e.target.className.indexOf('option') >= 0) {
+          e.target.parentNode.scrollTop -= e. wheelDeltaY; 
+        }
+        e = e || window.event;
+        if (e.preventDefault)
+            e.preventDefault();
+        e.returnValue = false;  
+      }
+
+      function preventDefaultForScrollKeys(e) {
+          if (keys[e.keyCode]) {
+              preventDefault(e);
+              return false;
+          }
+      }
+
+      function disableScroll() {
+        if (window.addEventListener) // older FF
+            window.addEventListener('DOMMouseScroll', preventDefault, false);
+        window.onwheel = preventDefault; // modern standard
+        window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+        window.ontouchmove  = preventDefault; // mobile
+        document.onkeydown  = preventDefaultForScrollKeys;
+      }
+
+      function enableScroll() {
+          if (window.removeEventListener)
+              window.removeEventListener('DOMMouseScroll', preventDefault, false);
+          window.onmousewheel = document.onmousewheel = null; 
+          window.onwheel = null; 
+          window.ontouchmove = null;  
+          document.onkeydown = null;  
+      }
+
+    </script>
+    <script src="dist/js/jquery-3.2.1.min.js"></script>
+    <script src="dist/build.js"></script>
+  </body>
+</html>
