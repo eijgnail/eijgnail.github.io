@@ -1,428 +1,68 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-	<meta charset="UTF-8">
-	<title>温博集团</title>
-	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
-	<style>
-		html, body {
-			margin: 0;
-			padding: 0;
-		}
-		* {
-			box-sizing: border-box;
-			font-family: "PingFang SC";
-		}
-		img {
-			display: inline-block;
-		}
-		.empty {
-			flex: 1;
-		}
-		.parallax-mirror img {
-			filter: sepia(80%);
-			transition: filter 0.5s linear;
-		}
-		.nav {
-			z-index: 1000;
-			width: 100%;
-			position: fixed;
-			top: 0;
-			left: 0;
-		}
-		.nav .always-black {
-			height: 30px;
-			width: 100%;
-			background-color: #2f2f2f;
-			display: flex;
-			align-items: center;
-		}
-		.nav .always-black a {
-			font-size: 12px;
-			color: white;
-			text-decoration: none;
-			margin-left: 20px;
-		}
-		.nav .switch {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: 50px;
-			width: 100%;
-			transition: background-color 0.5s linear;
-			padding-right: 40px;
-		}
-		.nav .switch a {
-			text-shadow: 0px 2px 20px rgba(0, 0, 0, 1); 
-			color: white;
-			text-decoration: none;
-			margin-right: 40px;
-		}
-		.nav .switch a.company {
-			margin-left: 120px;
-			font-weight: 200;
-			font-size: 30px;
-		}
-		.page-1 {
-			height: 100vh;
-			width: 100%;
-			background: inherit;
-			font-size: 60px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding-bottom: 100px;
-			color: white;
-			font-family: 'STHeiti';
-			font-weight: bold;
-			text-shadow: 0px 2px 20px rgba(0, 0, 0, 1); 
-		}
-		.page {
-			background-color: white;
-			width: 100%;
-			padding: 60px 20px;
-		}
-		.page .title {
-			font-size: 30px;
-			font-weight: 200;
-			text-align: center;
-		}
-		.page .line {
-			text-align: center;
-			width: 100px;
-			margin: 0 auto;
-			margin-top: 10px;
-			height: 1px;
-			background-color: #2f2f2f;
-		}
-		.page .content {
-			margin-top: 50px;
-			width: 100%;
-			display: flex;
-			justify-content: center;
-		}
-		.our-services .content .block {
-			flex: 1;
-			text-align: center;
-		}
-		.our-services .content .block .name {
-			font-size: 18px;
-			margin-bottom: 20px;
-			margin-top: 20px;
-		}
-		.our-services .content .block .intro {
-			font-size: 14px;
-			margin-bottom: 100px;
-			font-weight: 200;
-		}
-		.our-services .content .block .number {
-			font: bold 18px/24px "Libre Baskerville";
-			margin-bottom: 10px;
-		}
-		.our-services .content .block .text {
-			color: #aaa;
-			font-size: 18px;
-			font-weight: 200;
-		}
-		.about-us .block {
-			padding: 0 100px;
-			width: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-		.about-us .right {
-			margin-left: 20px;
-		}
-		.about-us .left {
-			margin-right: 20px;
-			margin-left: 40px;
-		}
-		.about-us .right .name, .about-us .left .name {
-			font-size: 30px;
-			margin-bottom: 20px;
-			padding-left: 16px;
-		}
-		.about-us .right .intro, .about-us .left .list {
-			font-size: 14px;
-			line-height: 1.6;
-		}
-		.partners .block {
-			padding: 0 100px;
-		}
-		.contact-us .content {
-			display: block;
-			padding: 0 300px;
-		}
-		.contact-us .initial {
-			position: relative;
-			margin-top: 20px;
-		}
-		.contact-us .initial
-		label {
-      color: #0476FA;
-      text-decoration: none;
-    }
-    label {
-      position: absolute;
-      top: 5px;
-      left: 7px;
-      z-index: -1;
-      font-size: 12px;
-      font-size: 0.75rem;
-      font-weight: bold;
-      opacity: 0;
-      transition: top 200ms, opacity 200ms;
-    }
-    label.floating {
-      top: -7px;
-      z-index: 1;
-      padding: 0 3px;
-      opacity: 1.0;
-      background-color: #FFF;
-    }
-    input, textarea {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      font-size: 18px;
-      font-size: 1.125rem;
-      background-color: rgba(240, 240, 240, 0.4);
-      border: 1px solid #95ACC1;
-      border-radius: 3.5px;
-      transition: border 200ms;
-    }
-    input:focus, textarea:focus {
-	    border-color: #0074D9;
-	    outline: none;
-    }
-    textarea {
-    	resize: none;
-    }
-    .footer {
-    	width: 100%;
-    	height: 30px;
-    	padding: 0 20px;
-    	color: #ccc;
-    	background-color: #2f2f2f;
-    	display: flex;
-    	justify-content: center;
-    	align-items: center;
-    	font-size: 12px;
-    	font-weight: 200;
-    }
-    .footer img {
-    	height: 16px;
-    	margin-right: 10px;
-    	margin-top: 5px;
-    }
-    .footer .link {
-    	text-decoration: none;
-    	color: #CCA876;
-    }
-	</style>
-</head>
-<body>
-	<div class="nav">
-		<div class="always-black">
-			<a href="">Our Service</a>
-			<a href="">About Us</a>
-			<a href="">Partners</a>
-			<a href="">Contact Us</a>
-			<a href="">Careers</a>
-		</div>
-		<div class="switch">
-			<a href="#" class="company">温博集团</a>
-			<div class="empty"></div>
-			<a href="" class="right">Home</a>
-			<a href="" class="right">中文(中国)</a>
-		</div>
-	</div>
-	<div class="page-1" data-parallax="scroll" data-image-src="./img/index-bg.jpg">
-		移民梦想 从这里开始
-	</div>
-	<div class="our-services page">
-		<div class="title">Our Services</div>
-		<div class="line"></div>
-		<div class="content">
-			<div class="block">
-				<img src="http://wenbo.ca/wp-content/uploads/2013/03/logo_jishu.png" alt="">
-				<div class="name">技术移民项目</div>
-				<div class="intro">
-					前所未有, 独家办理<br>
-					花费最少, 时间最快
-				</div>
-			</div>
-			<div class="block">
-				<img src="http://wenbo.ca/wp-content/uploads/2013/03/logo_touzi.png" alt="">
-				<div class="name">投资移民项目</div>
-				<div class="intro">
-					无名额限制,审批速度加快<br>
-					投资押金最少
-				</div>
-			</div>
-			<div class="block">
-				<img src="http://wenbo.ca/wp-content/uploads/2013/03/logo_danbao.png" alt="">
-				<div class="name">亲友担保移民</div>
-				<div class="intro">
-					知识分子,首选项目<br>
-					零拒签率
-				</div>
-			</div>
-			<div class="block">
-				<img src="http://wenbo.ca/wp-content/uploads/2013/03/logo_xuesheng.png" alt="">
-				<div class="name">学生移民项目</div>
-				<div class="intro">
-					10个月培训+6个月工作+<br>
-					2个月省提名+6个月联邦
-				</div>
-			</div>
-		</div>
-		<div class="content">
-			<div class="block">
-				<div class="number">
-					200+
-				</div>
-				<div class="text">
-					信赖我们的客户
-				</div>
-			</div>
-			<div class="block">
-				<div class="number">
-					30+
-				</div>
-				<div class="text">
-					经典移民项目
-				</div>
-			</div>
-			<div class="block">
-				<div class="number">
-					99%
-				</div>
-				<div class="text">
-					移民成功率
-				</div>
-			</div>
-			<div class="block">
-				<div class="number">
-					180+
-				</div>
-				<div class="text">
-					精彩成功案例
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="about-us page">
-		<div class="title">About Us</div>
-		<div class="line"></div>
-		<div class="content">
-			<div class="block">
-				<img src="http://wenbo.ca/wp-content/uploads/2015/04/company_inside.png" alt="">
-				<div class="right">
-					<div class="name">公司概况</div>
-					<div class="intro">
-						温博集团公司成立于 2011 年，总部设于加拿大温哥华市。 温博教育咨询有限公司以及温博移民咨询有限公司是温博集团旗下子公司，分别注册在加拿大温哥华市和温尼伯市。<br> 温博教育咨询公司侧重于国籍院校合作与战略招生，为来自各个国家的国际留学生提供教育咨询，院校申请等服务，同时成功建立国内和国外多个院校 合作3+1、2+2 等课程。<br>温博移民咨询公司则侧重于加拿大各个省份中的学生移民、技术移民和投资移民 咨询与办理，时时为各国申请人提供真实、高效、高通过率的签证与移民申请，解决各类移民和留学签证申请方面出现的疑难杂症。温博移民同时办理商业投资与高端商务旅游，成功帮助多个企业家在加拿大注册及交易前景良好的高端投资项目。
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="content">
-			<div class="block">
-				<div class="left">
-					<div class="name">公司优势</div>
-					<ul class="list">
-						<li class="item">最深资历 – 专业承办各类联合办学国际业务</li>
-						<li class="item">最熟政策 – 熟悉各类官方政策的所有细节</li>
-						<li class="item">最精程序 – 精通各类翻译及公证文件的保存</li>
-						<li class="item">最快审批 – 各程序同时并行保证审批快捷</li>
-						<li class="item">最佳团组 – 30 年专业顾问，中西联合服务</li>
-						<li class="item">最优员工 – 所有环节由专业工作人员审阅</li>
-					</ul>
-				</div>
-				<div class="empty"></div>
-				<img src="http://wenbo.ca/wp-content/uploads/2013/03/admin-ajax.jpg" alt="">
-				<img src="http://wenbo.ca/wp-content/uploads/2015/04/map_chinanew.png" alt="">
-			</div>
-		</div>
-	</div>
-	<div class="partners page">
-		<div class="title">Partners</div>
-		<div class="line"></div>
-		<div class="content">
-			<div class="block">
-				<img src="http://wenbo.ca/wp-content/uploads/2013/03/logo_patner_rrc.png" alt="">
-			</div>
-			<div class="block">
-				<img src="http://wenbo.ca/wp-content/uploads/2013/03/logo_patner_ptsd.png" alt="">
-			</div>
-			<div class="block">
-				<img src="http://wenbo.ca/wp-content/uploads/2013/03/logo_patner_uofwinnipeg.png" alt="">
-			</div>
-			<div class="block">
-				<img src="http://wenbo.ca/wp-content/uploads/2013/03/logo_partner_mitt.png" alt="">
-			</div>
-		</div>
-		<div class="content">
-			<div class="block">
-				<img src="http://wenbo.ca/wp-content/uploads/2013/03/logo_patner_stjohn.png" alt="">
-			</div>
-			<div class="block">
-				<img src="http://wenbo.ca/wp-content/uploads/2013/03/logo_patner_atc.png" alt="">
-			</div>
-			<div class="block">
-				<img src="http://wenbo.ca/wp-content/uploads/2013/03/UCN-Logo_without-background-1.png" alt="">
-			</div>
-			<div class="block">
-				<img src="http://wenbo.ca/wp-content/uploads/2013/03/without-background-logo-1.png" alt="">
-			</div>
-		</div>
-	</div>
-	<div class="contact-us page">
-		<div class="title">Contact Us</div>
-		<div class="line"></div>
-		<div class="content">
-			<div class="initial">
-				<label for="name" class="floating">Name</label>
-				<input id="name" type="text" placeholder="Name">
-			</div>
-			<div class="initial">
-				<label for="phone" class="floating">Phone</label>
-				<input id="phone" type="text" placeholder="Phone">
-			</div>
-			<div class="initial">
-				<label for="email" class="floating">Email</label>
-				<input id="email" type="text" placeholder="Email">
-			</div>
-			<div class="initial">
-				<label for="content" class="floating">Content</label>
-				<textarea placeholder="content" rows="10" id="content"></textarea>
-			</div>
-		</div>
-	</div>
-	<div class="footer">
-		联系我们：
-		<a href=""><img src="http://wenbo.ca/wp-content/uploads/2014/11/logo_weixin.png" alt=""></a>
-		<a href=""><img src="http://wenbo.ca/wp-content/uploads/2014/11/logo_weibo.png" alt=""></a>
-		<div class="empty"></div>
-		<span>Copyright © 2015 <a href="" class="link">温博移民</a></span>
-	</div>
-	<script src="./js/jquery-3.2.1.min.js"></script>
-	<script src="./js/parallax.min.js"></script>
-	<script src="./js/floatlabel.min.js"></script>
-	<script>
-		$(function () {
-			floatingLabel.evaluateInputs()
-			$(window).on('scroll', () => {
-				if ($(window).scrollTop() != 0) {
-					$('.nav .switch').css({'background-color': '#2f2f2f'})
-					$('.parallax-mirror img').css({'filter': 'none'})
-				} else {
-					$('.nav .switch').css({'background-color': 'inherit'})
-					$('.parallax-mirror img').css({'filter': 'sepia(80%)'})
-				}
-			})
-		})
-	</script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>温博集团</title>
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
+    <style>
+    	* {
+    		padding: 0px;
+    		margin: 0px;
+    		box-sizing: border-box;
+    		font-family: PingFangSC-Regular;
+    	}
+    	input:focus,
+			select:focus,
+			textarea:focus,
+			button:focus {
+			    outline: none;
+			}
+    </style>
+  </head>
+  <body>
+    <div id="app">
+    	<router-view></router-view>
+    </div>
+    <script>
+      var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+      function preventDefault(e) {
+        if (e.target.className.indexOf('option') >= 0) {
+          e.target.parentNode.scrollTop -= e. wheelDeltaY; 
+        }
+        e = e || window.event;
+        if (e.preventDefault)
+            e.preventDefault();
+        e.returnValue = false;  
+      }
+
+      function preventDefaultForScrollKeys(e) {
+          if (keys[e.keyCode]) {
+              preventDefault(e);
+              return false;
+          }
+      }
+
+      function disableScroll() {
+        if (window.addEventListener) // older FF
+            window.addEventListener('DOMMouseScroll', preventDefault, false);
+        window.onwheel = preventDefault; // modern standard
+        window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+        window.ontouchmove  = preventDefault; // mobile
+        document.onkeydown  = preventDefaultForScrollKeys;
+      }
+
+      function enableScroll() {
+          if (window.removeEventListener)
+              window.removeEventListener('DOMMouseScroll', preventDefault, false);
+          window.onmousewheel = document.onmousewheel = null; 
+          window.onwheel = null; 
+          window.ontouchmove = null;  
+          document.onkeydown = null;  
+      }
+
+    </script>
+    <script src="./dist/js/jquery-3.2.1.min.js"></script>
+    <script src="./dist/build.js"></script>
+  </body>
 </html>
